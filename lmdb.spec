@@ -5,7 +5,7 @@
 Summary:	Memory-mapped key-value database
 Name:		lmdb
 Version:	0.9.14
-Release:	1
+Release:	2
 License:	OpenLDAP
 Group:		System/Libraries
 Url:		http://symas.com/mdb/
@@ -64,7 +64,7 @@ Development files for %{name}.
 %patch0 -p1 -b .make
 
 %build
-%make XCFLAGS="%{optflags}"
+%make CC=%{__cc} XCFLAGS="%{optflags}" LDFLAGS="%{ldflags}"
 
 %install
 # make install expects existing directory tree
