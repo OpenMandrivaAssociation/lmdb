@@ -1,8 +1,8 @@
 # Update main Makefile in oprder to build and install follow guidelines
 
 diff -up liblmdb/Makefile.orig liblmdb/Makefile
---- liblmdb/Makefile.orig	2014-12-11 10:04:10.271450725 +0100
-+++ liblmdb/Makefile	2014-12-11 10:09:11.898187497 +0100
+--- a/libraries/liblmdb/Makefile.orig	2014-12-11 10:04:10.271450725 +0100
++++ a/libraries/liblmdb/Makefile	2014-12-11 10:09:11.898187497 +0100
 @@ -23,25 +23,30 @@ OPT = -O2 -g
  CFLAGS	= $(THREADS) $(OPT) $(W) $(XCFLAGS)
  LDLIBS	=

@@ -4,8 +4,8 @@
 
 Summary:	Memory-mapped key-value database
 Name:		lmdb
-Version:	0.9.14
-Release:	2
+Version:	0.9.22
+Release:	1
 License:	OpenLDAP
 Group:		System/Libraries
 Url:		http://symas.com/mdb/
@@ -14,9 +14,9 @@ Url:		http://symas.com/mdb/
 # $ git clone git://gitorious.org/mdb/mdb.git lmdb && pushd lmdb
 # $ git checkout tags/LMDB_$VERSION && popd
 # $ tar cvzf lmdb-$VERSION.tar.gz -C lmdb/libraries/ liblmdb
-Source0:	%{name}-%{version}.tar.gz
+Source0:	LMDB_%{version}.tar.gz
 # Patch description in the corresponding file
-Patch0:		lmdb-0.9.14-make.patch
+Patch0:		lmdb-make.patch
 
 %description
 LMDB is an ultra-fast, ultra-compact key-value embedded data store developed
@@ -39,7 +39,7 @@ Group:		System/Libraries
 Shared library for %{name}.
 
 %files -n %{libname}
-%doc COPYRIGHT CHANGES LICENSE
+%doc libraries/lib%{name}/COPYRIGHT libraries/lib%{name}/CHANGES libraries/lib%{name}/LICENSE
 %{_libdir}/liblmdb.so.%{major}*
 
 #----------------------------------------------------------------------------
@@ -60,13 +60,15 @@ Development files for %{name}.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q -n lib%{name}
+%setup -q -n %{name}-LMDB_%{version}
 %patch0 -p1 -b .make
 
 %build
+pushd libraries/lib%{name}
 %make CC=%{__cc} XCFLAGS="%{optflags}" LDFLAGS="%{ldflags}"
 
 %install
+pushd libraries/lib%{name}
 # make install expects existing directory tree
 mkdir -m 0755 -p %{buildroot}%{_bindir}
 mkdir -m 0755 -p %{buildroot}%{_includedir}
@@ -75,6 +77,6 @@ mkdir -m 0755 -p %{buildroot}%{_mandir}/man1
 
 %makeinstall_std \
 	prefix=%{_prefix} \
-	libprefix=%{_libdir} \
-	manprefix=%{_mandir}
+	libdir=%{_libdir} \
+	mandir=%{_mandir}
 
