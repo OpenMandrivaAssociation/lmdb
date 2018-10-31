@@ -5,7 +5,7 @@
 Summary:	Memory-mapped key-value database
 Name:		lmdb
 Version:	0.9.22
-Release:	1
+Release:	2
 License:	OpenLDAP
 Group:		System/Libraries
 Url:		http://symas.com/mdb/
