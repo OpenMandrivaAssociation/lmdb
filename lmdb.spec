@@ -4,16 +4,11 @@
 
 Summary:	Memory-mapped key-value database
 Name:		lmdb
-Version:	0.9.23
+Version:	0.9.24
 Release:	1
 License:	OpenLDAP
 Group:		System/Libraries
-Url:		http://symas.com/mdb/
-# Source built from git. To get the tarball, execute following commands:
-# $ export VERSION=%%{version}
-# $ git clone git://gitorious.org/mdb/mdb.git lmdb && pushd lmdb
-# $ git checkout tags/LMDB_$VERSION && popd
-# $ tar cvzf lmdb-$VERSION.tar.gz -C lmdb/libraries/ liblmdb
+Url:		http://symas.com/lmdb/
 Source0:	https://github.com/LMDB/lmdb/archive/LMDB_%{version}.tar.gz
 # Patch description in the corresponding file
 Patch0:		lmdb-make.patch
