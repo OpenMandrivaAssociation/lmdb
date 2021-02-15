@@ -4,7 +4,7 @@
 
 Summary:	Memory-mapped key-value database
 Name:		lmdb
-Version:	0.9.24
+Version:	0.9.28
 Release:	1
 License:	OpenLDAP
 Group:		System/Libraries
@@ -55,22 +55,22 @@ Development files for %{name}.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q -n %{name}-LMDB_%{version}
-%patch0 -p1 -b .make
+%autosetup -n %{name}-LMDB_%{version} -p1
 
 %build
-pushd libraries/lib%{name}
-%make CC=%{__cc} XCFLAGS="%{optflags}" LDFLAGS="%{ldflags}"
+%set_build_flags
+cd libraries/lib%{name}
+%make_build CC=%{__cc} XCFLAGS="%{optflags} -O3" LDFLAGS="%{build_ldflags}"
 
 %install
-pushd libraries/lib%{name}
+cd libraries/lib%{name}
 # make install expects existing directory tree
 mkdir -m 0755 -p %{buildroot}%{_bindir}
 mkdir -m 0755 -p %{buildroot}%{_includedir}
 mkdir -m 0755 -p %{buildroot}%{_libdir}
 mkdir -m 0755 -p %{buildroot}%{_mandir}/man1
 
-%makeinstall_std \
+%make_install \
 	prefix=%{_prefix} \
 	libdir=%{_libdir} \
 	mandir=%{_mandir}
