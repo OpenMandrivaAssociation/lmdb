@@ -4,12 +4,13 @@
 
 Summary:	Memory-mapped key-value database
 Name:		lmdb
-Version:	0.9.28
+Version:	0.9.29
 Release:	1
 License:	OpenLDAP
 Group:		System/Libraries
 Url:		http://symas.com/lmdb/
 Source0:	https://github.com/LMDB/lmdb/archive/LMDB_%{version}.tar.gz
+Source1:	https://src.fedoraproject.org/rpms/lmdb/raw/rawhide/f/lmdb.pc.in
 # Patch description in the corresponding file
 Patch0:		lmdb-make.patch
 
@@ -22,7 +23,7 @@ size of the virtual address space.
 
 %files
 %{_bindir}/mdb_*
-%{_mandir}/man1/mdb_*.1*
+%doc %{_mandir}/man1/mdb_*.1*
 
 #----------------------------------------------------------------------------
 
@@ -43,6 +44,7 @@ Shared library for %{name}.
 Summary:	Development files for %{name}
 Group:		Development/C
 Requires:	%{libname} = %{EVRD}
+Requires:	%{name} = %{EVRD}
 Provides:	%{name}-devel = %{EVRD}
 
 %description -n %{devname}
@@ -51,6 +53,7 @@ Development files for %{name}.
 %files -n %{devname}
 %{_includedir}/lmdb.h
 %{_libdir}/liblmdb.so
+%{_libdir}/pkgconfig/*.pc
 
 #----------------------------------------------------------------------------
 
@@ -75,3 +78,12 @@ mkdir -m 0755 -p %{buildroot}%{_mandir}/man1
 	libdir=%{_libdir} \
 	mandir=%{_mandir}
 
+# Install pkgconfig file
+sed -e 's:@PREFIX@:%{_prefix}:g' \
+	-e 's:@EXEC_PREFIX@:%{_exec_prefix}:g' \
+	-e 's:@LIBDIR@:%{_libdir}:g' \
+	-e 's:@INCLUDEDIR@:%{_includedir}:g' \
+	-e 's:@PACKAGE_VERSION@:%{version}:g' \
+	%{SOURCE1} >lmdb.pc
+
+install -Dpm 0644 -t %{buildroot}%{_libdir}/pkgconfig lmdb.pc
