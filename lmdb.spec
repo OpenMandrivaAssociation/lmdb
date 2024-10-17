@@ -8,7 +8,7 @@ Version:	0.9.31
 Release:	1
 License:	OpenLDAP
 Group:		System/Libraries
-Url:		http://symas.com/lmdb/
+Url:		https://symas.com/lmdb/
 Source0:	https://github.com/LMDB/lmdb/archive/LMDB_%{version}.tar.gz
 Source1:	https://src.fedoraproject.org/rpms/lmdb/raw/rawhide/f/lmdb.pc.in
 # Patch description in the corresponding file
