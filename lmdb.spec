@@ -14,6 +14,7 @@ Source1:	https://src.fedoraproject.org/rpms/lmdb/raw/rawhide/f/lmdb.pc.in
 # Patch description in the corresponding file
 Patch0:		lmdb-make.patch
 
+BuildRequires:	make
 %description
 LMDB is an ultra-fast, ultra-compact key-value embedded data store developed
 by for the OpenLDAP Project. By using memory-mapped files, it provides the
