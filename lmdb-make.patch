@@ -1,6 +1,6 @@
-diff -up lmdb-LMDB_0.9.19/libraries/liblmdb/Makefile.orig lmdb-LMDB_0.9.19/libraries/liblmdb/Makefile
---- lmdb-LMDB_0.9.19/libraries/liblmdb/Makefile.orig	2017-01-04 12:14:24.303344915 +0100
-+++ lmdb-LMDB_0.9.19/libraries/liblmdb/Makefile	2017-01-04 12:19:20.190295319 +0100
+diff -up lmdb-LMDB_0.9.35/libraries/liblmdb/Makefile.1~ lmdb-LMDB_0.9.35/libraries/liblmdb/Makefile
+--- lmdb-LMDB_0.9.35/libraries/liblmdb/Makefile.1~	2026-01-29 22:51:48.000000000 +0100
++++ lmdb-LMDB_0.9.35/libraries/liblmdb/Makefile	2026-02-17 15:48:41.205804538 +0100
 @@ -26,6 +26,7 @@ OPT = -O2 -g
  CFLAGS	= $(THREADS) $(OPT) $(W) $(XCFLAGS)
  LDLIBS	=
@@ -37,7 +37,7 @@ diff -up lmdb-LMDB_0.9.19/libraries/liblmdb/Makefile.orig lmdb-LMDB_0.9.19/libra
  
  test:	all
  	rm -rf testdb && mkdir testdb
-@@ -64,20 +65,24 @@ test:	all
+@@ -64,21 +65,25 @@ test:	all
  liblmdb.a:	mdb.o midl.o
  	$(AR) rs $@ mdb.o midl.o
  
@@ -61,6 +61,7 @@ diff -up lmdb-LMDB_0.9.19/libraries/liblmdb/Makefile.orig lmdb-LMDB_0.9.19/libra
 -mtest4:	mtest4.o liblmdb.a
 -mtest5:	mtest5.o liblmdb.a
 -mtest6:	mtest6.o liblmdb.a
+-mplay:	mplay.o liblmdb.a
 +mdb_stat: mdb_stat.o liblmdb.so
 +mdb_copy: mdb_copy.o liblmdb.so
 +mdb_dump: mdb_dump.o liblmdb.so
@@ -71,6 +72,7 @@ diff -up lmdb-LMDB_0.9.19/libraries/liblmdb/Makefile.orig lmdb-LMDB_0.9.19/libra
 +mtest4:	mtest4.o liblmdb.so
 +mtest5:	mtest5.o liblmdb.so
 +mtest6:	mtest6.o liblmdb.so
++mplay:	mplay.o liblmdb.so
  
  mdb.o: mdb.c lmdb.h midl.h
  	$(CC) $(CFLAGS) $(CPPFLAGS) -c mdb.c

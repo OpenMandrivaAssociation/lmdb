@@ -4,7 +4,7 @@
 
 Summary:	Memory-mapped key-value database
 Name:		lmdb
-Version:	0.9.31
+Version:	0.9.35
 Release:	1
 License:	OpenLDAP
 Group:		System/Libraries
