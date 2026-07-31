@@ -4,7 +4,7 @@
 
 Summary:	Memory-mapped key-value database
 Name:		lmdb
-Version:	0.9.35
+Version:	1.0.0
 Release:	1
 License:	OpenLDAP
 Group:		System/Libraries
@@ -12,7 +12,7 @@ Url:		https://symas.com/lmdb/
 Source0:	https://github.com/LMDB/lmdb/archive/LMDB_%{version}.tar.gz
 Source1:	https://src.fedoraproject.org/rpms/lmdb/raw/rawhide/f/lmdb.pc.in
 # Patch description in the corresponding file
-Patch0:		lmdb-make.patch
+# dropped (no longer applies): Patch0:		lmdb-make.patch
 
 BuildRequires:	make
 %description
@@ -59,7 +59,7 @@ Development files for %{name}.
 #----------------------------------------------------------------------------
 
 %prep
-%autosetup -n %{name}-LMDB_%{version} -p1
+%autosetup -n lmdb-LMDB_1.0.0 -p1
 
 %build
 %set_build_flags
