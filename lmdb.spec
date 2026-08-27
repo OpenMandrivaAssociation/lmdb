@@ -56,6 +56,7 @@ Development files for %{name}.
 %files -n %{devname}
 %{_includedir}/lmdb.h
 %{_libdir}/liblmdb.so
+%{_libdir}/liblmdb.a
 %{_libdir}/pkgconfig/*.pc
 
 #----------------------------------------------------------------------------
