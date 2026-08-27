@@ -1,11 +1,12 @@
-%define major 0
-%define libname %mklibname %{name} %{major}
+%define major 1
+%define oldlibname %mklibname %{name} 0
+%define libname %mklibname %{name}
 %define devname %mklibname %{name} -d
 
 Summary:	Memory-mapped key-value database
 Name:		lmdb
 Version:	1.0.0
-Release:	1
+Release:	2
 License:	OpenLDAP
 Group:		System/Libraries
 Url:		https://symas.com/lmdb/
@@ -31,6 +32,7 @@ size of the virtual address space.
 %package -n %{libname}
 Summary:	Shared library for %{name}
 Group:		System/Libraries
+Obsoletes:	%{oldlibname} < %{EVRD}
 
 %description -n %{libname}
 Shared library for %{name}.
@@ -64,7 +66,7 @@ Development files for %{name}.
 %build
 %set_build_flags
 cd libraries/lib%{name}
-%make_build CC=%{__cc} XCFLAGS="%{optflags} -O3" LDFLAGS="%{build_ldflags}"
+%make_build CC="%{__cc}" XCFLAGS="%{optflags} -O3" LDFLAGS="%{build_ldflags}"
 
 %install
 cd libraries/lib%{name}
